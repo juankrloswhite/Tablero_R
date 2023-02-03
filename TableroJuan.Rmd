@@ -1,0 +1,77 @@
+---
+title: "Themed dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    theme:
+      bg: "#101010"
+      fg: "#FDF7F7" 
+      primary: "#ED79F9"
+      base_font:
+        google: Prompt
+      code_font:
+        google: JetBrains Mono
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(paqueteMET)
+library(ggplot2)
+library(plotrix)
+#Install thematic and un-comment for themed static plots (i.e., ggplot2)
+#thematic::thematic_rmd()
+```
+
+Column {data-width=700 .tabset}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+  ggplot(data = CarreraLuz22, aes(x = categoria, y = timerun)) + 
+  geom_point(size = 1, alpha = 0.7) +
+  xlab('Categoria') + 
+  ylab('TimeRun') +
+  ggtitle('Tiempos Según Categoría') + 
+  theme(plot.title=element_text(size = 20, face = 'bold', color ='black', hjust=0.5)) +
+  theme(panel.background = element_rect(fill = "#B7C9FF"))
+  
+```
+
+### Chart B
+
+```{r}
+ggplot(data = CarreraLuz22, aes(x = sex, y = edad)) + 
+  geom_jitter(size = 1, alpha = 0.7) +
+  geom_boxplot(alpha = 0.7) +
+  xlab('Género') + 
+  ylab('Edad') +
+  ggtitle('Edad según el Género') + 
+  theme(plot.title=element_text(size = 20, face = 'bold', color ='black', hjust=0.5)) +
+  theme(panel.background = element_rect(fill = "#5FDEA0"))
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart C
+
+```{r}
+ggplot(data = CarreraLuz22, aes(x = categoria)) + 
+  ylab('Competidores') +
+  ggtitle('Numero de Competidores por Categoría') + 
+  theme(plot.title=element_text(size = 20, face = 'bold', color ='black', hjust=0.5)) +
+  theme(panel.background = element_rect(fill = "#F1F576"))+
+  geom_bar() 
+```
+
+### Chart D
+
+```{r}
+ggplot(CarreraLuz22, aes(x = timerun)) + 
+  geom_histogram(aes(y = ..density..),
+                 colour = 1, fill = "white") +
+  geom_density()
+```
+
