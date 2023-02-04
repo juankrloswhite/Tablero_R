@@ -3,9 +3,9 @@ title: "Themed dashboard"
 output: 
   flexdashboard::flex_dashboard:
     theme:
-      bg: "#101010"
-      fg: "#FDF7F7" 
-      primary: "#ED79F9"
+      bg: "#F3F5F0"  ##Fondo
+      fg: "#101010"  ##Letra 
+      primary: "#91ABE3" #Barra
       base_font:
         google: Prompt
       code_font:
@@ -71,7 +71,29 @@ ggplot(data = CarreraLuz22, aes(x = categoria)) +
 ```{r}
 ggplot(CarreraLuz22, aes(x = timerun)) + 
   geom_histogram(aes(y = ..density..),
-                 colour = 1, fill = "white") +
+                 colour = 1, fill = "gray") +
+  theme(panel.background = element_rect(fill = "#C3FEBE")) +
   geom_density()
 ```
 
+Column {data-width=150}
+-----------------------------------------------------------------------
+### Tiempo mas rapido
+```{r}
+cat(min(CarreraLuz22$timerun))
+```
+
+### Mayor edad
+```{r}
+cat(max(CarreraLuz22$edad))
+```
+
+### Menor edad
+```{r}
+cat(max(CarreraLuz22$edad))
+```
+
+### Total participantes
+```{r}
+cat(nrow(CarreraLuz22))
+```
