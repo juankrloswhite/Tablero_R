@@ -1,5 +1,5 @@
 ---
-title: "Themed dashboard"
+title: "Juan Restrepo Dashboard"
 output: 
   flexdashboard::flex_dashboard:
     theme:
@@ -26,7 +26,7 @@ library(plotrix)
 Column {data-width=700 .tabset}
 -----------------------------------------------------------------------
 
-### Chart A
+### Tiempos/Categoria
 
 ```{r}
   ggplot(data = CarreraLuz22, aes(x = categoria, y = timerun)) + 
@@ -39,7 +39,7 @@ Column {data-width=700 .tabset}
   
 ```
 
-### Chart B
+### Edad/Genero
 
 ```{r}
 ggplot(data = CarreraLuz22, aes(x = sex, y = edad)) + 
@@ -55,7 +55,7 @@ ggplot(data = CarreraLuz22, aes(x = sex, y = edad)) +
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart C
+### Competidores/Categoria
 
 ```{r}
 ggplot(data = CarreraLuz22, aes(x = categoria)) + 
@@ -66,12 +66,14 @@ ggplot(data = CarreraLuz22, aes(x = categoria)) +
   geom_bar() 
 ```
 
-### Chart D
+### Grafico de densidad
 
 ```{r}
 ggplot(CarreraLuz22, aes(x = timerun)) + 
   geom_histogram(aes(y = ..density..),
                  colour = 1, fill = "gray") +
+  ggtitle('Time Run de los participantes') +
+  theme(plot.title=element_text(size = 20, face = 'bold', color ='black', hjust=0.5)) +
   theme(panel.background = element_rect(fill = "#C3FEBE")) +
   geom_density()
 ```
@@ -90,7 +92,7 @@ cat(max(CarreraLuz22$edad))
 
 ### Menor edad
 ```{r}
-cat(max(CarreraLuz22$edad))
+cat(min(CarreraLuz22$edad))
 ```
 
 ### Total participantes
